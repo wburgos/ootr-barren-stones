@@ -2,7 +2,9 @@ function shuffleLocations(rewards, rewardsLocations) {
   const shuffledRewards = rewards.map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
-  const locations = {};
+  const locations = {
+    'Links Pocket': 'Kokiri Emerald'
+  };
   rewardsLocations.forEach((rewardLocation, i) => {
     locations[rewardLocation] = shuffledRewards[i];
   });
@@ -11,7 +13,7 @@ function shuffleLocations(rewards, rewardsLocations) {
 
 function getStoneDungeons(locations, dungeons) {
   return Object.keys(locations).map((location) => {
-    if (location !== 'Links Pocket' && ['Kokiri Emerald', 'Goron Ruby', 'Zora Sapphire'].includes(locations[location])) {
+    if (['Goron Ruby', 'Zora Sapphire'].includes(locations[location])) {
       return dungeons[location];
     }
   }).filter(value => value);
