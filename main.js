@@ -26,10 +26,13 @@ fetch('data.json')
     template.settings.empty_dungeons_specific = getStoneDungeons(template.locations, dungeons);
     template.settings.user_message = 'S6 Barren Stones';
 
-    // Generate and download the JSON file
+    // Generate the plando file
     let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(template));
     let dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "s6_barren_stones.json");
-    dlAnchorElem.click();
+    document.getElementById('main-link').style = 'display: block';
+  }).catch(err => {
+    document.getElementById('main-link').style = 'display: block';
+    document.getElementById('main-link').innerHTML = 'Uh oh, something went wrong. Try again?';
   });
